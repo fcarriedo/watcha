@@ -10,8 +10,9 @@ import (
 )
 
 var (
-	interval        = flag.Int("i", 30, "Interval time to sync (seconds)")
+	interval        = flag.Int("t", 30, "Interval time to sync (seconds)")
 	syncEntriesFile = flag.String("f", "", "Sync entries file")
+	interactive     = flag.Bool("i", true, "Specifies if it wants an interactive session")
 )
 
 func main() {

@@ -15,4 +15,4 @@ from the source to the dist
 
 ## To Run
 
-  $ watcha -f syncFiles.manifest -i 30
+  $ watcha -f syncFiles.manifest -t 30 -i=true
