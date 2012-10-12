@@ -7,12 +7,16 @@ from the source to the dist
 
 ### Linux/OS X/Unix
 
-  $ go build -o watcha
+    $ go build -o watcha
 
 ### Windows
 
-  $ go build -o watcha.exe
+    $ go build -o watcha.exe
 
 ## To Run
 
-  $ watcha -f syncFiles.manifest -t 30 -i=true
+    $ watcha -f syncFiles.manifest -t 30 -i=true
+
+##### License
+
+MIT
