@@ -1,7 +1,6 @@
 # Watcha.go
 
-`watcha` is a little program that syncs the files given in the manifest
-from the source to the dist
+`watcha` is a little tool to sync files on an individual basis.
 
 ## To Build
 
