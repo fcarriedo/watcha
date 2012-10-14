@@ -21,7 +21,7 @@ func main() {
 	// Initial creation of sync files slice
 	files := make([]syncFile, 0, 5)
 
-	ticker := time.NewTicker(time.Second * 2)
+	ticker := time.NewTicker(time.Duration(*interval) * time.Second)
 	go func() {
 		for _ = range ticker.C {
 			performSync(files)
