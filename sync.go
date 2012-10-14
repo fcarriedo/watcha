@@ -14,7 +14,7 @@ type syncFile struct {
 func (sf *syncFile) sync() (int64, error) {
 	// Read from the src
 	// (Over)Write to the dst
-	fmt.Printf("Syncing from '%s' to '%s'\n", sf.src, sf.dst)
+	//fmt.Printf("Syncing from '%s' to '%s'\n", sf.src, sf.dst)
 
 	src, err := os.Open(sf.src)
 	if err != nil {

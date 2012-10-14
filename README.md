@@ -10,7 +10,7 @@
 
 ## To Run
 
-    $ watcha -f syncFiles.manifest -t 30 -i=true
+    $ watcha -f syncFiles.manifest -t 30 -i
 
 ##### License
 

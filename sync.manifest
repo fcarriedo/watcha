@@ -1,4 +1,1 @@
-c:\tmp\a.txt c:\tmp\tmp-dir\a-copy.txt
-c:\tmp\a.txt c:\tmp\tmp-dir\b-copy.txt
-c:\tmp\a.txt c:\tmp\tmp-dir\c-copy.txt
-c:\tmp\a.txt c:\tmp\tmp-dir\d-copy.txt
+a.txt a-copy.txt

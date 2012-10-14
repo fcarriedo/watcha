@@ -12,7 +12,7 @@ import (
 var (
 	interval        = flag.Int("t", 30, "Interval time to sync (seconds)")
 	syncEntriesFile = flag.String("f", "", "Sync entries file")
-	interactive     = flag.Bool("i", true, "Specifies if it wants an interactive session")
+	interactive     = flag.Bool("i", false, "Specifies if it wants an interactive session")
 )
 
 func main() {
@@ -30,10 +30,14 @@ func main() {
 
 	if *syncEntriesFile != "" {
 		files, _ = readFromFile(*syncEntriesFile)
-		for {
-			time.Sleep(time.Hour)
+		if !*interactive {
+			for {
+				time.Sleep(time.Hour)
+			}
 		}
-	} else {
+	}
+
+	if *interactive {
 		enterRepl(files)
 	}
 }
@@ -62,13 +66,44 @@ func readFromFile(syncEntriesFileName string) ([]syncFile, error) {
 }
 
 func enterRepl(files []syncFile) {
-	var src, dst string
 	for {
-		fmt.Println("Do you want to add a path?")
-		if n, err := fmt.Scanf("%s %s", &src, &dst); err == nil && n == 2 {
-			files = append(files, syncFile{src, dst})
+		var option string
+		fmt.Println("1. (l)ist, 2. (a)dd, 3. (r)emove, 4. (q)uit")
+		fmt.Print("What to do? > ")
+		fmt.Scanf("%s", &option)
+		switch option {
+		case "1", "l":
+			list(files)
+		case "2", "a":
+			add(files)
+		case "3", "r":
+			fmt.Println("What!? Removing a file that was already syncing")
+		case "4", "q":
+			fmt.Println("Bye.")
+			os.Exit(0) // Probably clean up before exit to not leave corrupted sync files
+		default:
+			fmt.Println("Incorrect option")
+		}
+
+	}
+}
+
+func list(files []syncFile) {
+	if len(files) == 0 {
+		fmt.Println("No files are actually being synced. Please add one")
+	} else {
+		for i, file := range files {
+			fmt.Println(string(i) + ". " + file.String())
 		}
 	}
+}
+
+func add(files []syncFile) {
+	var src, dst string
+
+	fmt.Println("Please src and dst path separated by a space:")
+	fmt.Scanf("%s %s", &src, &dst)
+	files = append(files, syncFile{src, dst})
 }
 
 func performSync(files []syncFile) {
